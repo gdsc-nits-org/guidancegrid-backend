@@ -4,3 +4,4 @@ build
 dist
 .serverless
 .env
+.env.dev
