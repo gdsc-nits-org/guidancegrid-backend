@@ -18,7 +18,7 @@ echo "Checking if $PROCESS_NAME is running..."
 if pm2 show $PROCESS_NAME &>/dev/null; then
     # If the process exists, restart it
     echo "Restarting $PROCESS_NAME..."
-    pm2 restart $PROCESS_NAME
+    pm2 restart $PROCESS_NAME --update-env
 else
     # If the process doesn't exist, start it
     echo "Starting $PROCESS_NAME..."
