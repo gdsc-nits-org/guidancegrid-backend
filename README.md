@@ -178,3 +178,6 @@ It will ask for email. Enter it and accept all terms and conditions.
 19. If there were no errors, you should see a message that tells you that SSL certificate has been installed successfully on your domain.
 
 20. Go to `https://{YOUR_API_DOMAIN}/api/v1` to check if the endpoint is working.
+
+## ER Diagram
+![image (1)](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/48a5be94-0d6e-4d02-af91-1cdd12d7604e)
