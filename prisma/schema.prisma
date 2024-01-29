@@ -11,5 +11,62 @@ datasource db {
 }
 
 model User {
-  id  Int @id @default(autoincrement())
+  uid        Int          @id @default(autoincrement())
+  email      String       @unique
+  username   String       @unique
+  imgURL     String?
+  firstName  String
+  lastName   String
+  Social     Social[]
+  Post       Post[]
+  Comment    Comment[]
+  Vote       Vote[]
+  Connection Connection[]
+}
+
+model Social {
+  uid          Int     @id
+  githubURL    String?
+  facebookURL  String?
+  linkedinURL  String?
+  portfolioURL String?
+  instaURL     String?
+  user         User    @relation(fields: [uid], references: [uid])
+}
+
+model Post {
+  postID   Int       @id @default(autoincrement())
+  title    String
+  body     String
+  authorID Int
+  tags     Json[]
+  author   User      @relation(fields: [authorID], references: [uid])
+  Comment  Comment[]
+  Vote     Vote[]
+}
+
+model Comment {
+  commentID       Int  @id @default(autoincrement())
+  postID          Int
+  authorID        Int
+  parentCommentID Int?
+  post            Post @relation(fields: [postID], references: [postID])
+  author          User @relation(fields: [authorID], references: [uid])
+}
+
+model Vote {
+  uid    Int
+  postID Int
+  user   User @relation(fields: [uid], references: [uid])
+  post   Post @relation(fields: [postID], references: [postID])
+
+  @@unique([uid, postID])
+}
+
+model Connection {
+  fromUID  Int
+  toUID    Int
+  fromuser User @relation(fields: [fromUID], references: [uid])
+
+  @@unique([fromUID, toUID])
 }
