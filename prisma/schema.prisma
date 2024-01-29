@@ -35,14 +35,15 @@ model Social {
 }
 
 model Post {
-  postID   Int       @id @default(autoincrement())
-  title    String
-  body     String
-  authorID Int
-  tags     Json[]
-  author   User      @relation(fields: [authorID], references: [uid])
-  Comment  Comment[]
-  Vote     Vote[]
+  postID    Int       @id @default(autoincrement())
+  title     String
+  body      String
+  authorID  Int
+  tags      Json[]
+  author    User      @relation(fields: [authorID], references: [uid])
+  voteCount Int       @default(0)
+  Comment   Comment[]
+  Vote      Vote[]
 }
 
 model Comment {
