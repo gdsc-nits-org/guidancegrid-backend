@@ -8,7 +8,7 @@ pnpm install
 echo "Generating prisma client..."
 pnpm prisma generate
 echo "Migrating database..."
-pnpm prisma db pull
+pnpm prisma migrate dev
 echo "Building..."
 pnpm run build
 
