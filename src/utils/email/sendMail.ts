@@ -25,10 +25,10 @@ const createSendEmailCommand = (
         },
         Message: {
             Body: {
-                Html: {
-                    Charset: "UTF-8",
-                    Data: "<h1>Verify Email Address: Guidance Grid</h1>",
-                },
+                // Html: {
+                //     Charset: "UTF-8",
+                //     Data: "<h1>Verify Email Address: Guidance Grid</h1>",
+                // },
                 Text: {
                     Charset: "UTF-8",
                     Data: validatedEmailParams.body,
