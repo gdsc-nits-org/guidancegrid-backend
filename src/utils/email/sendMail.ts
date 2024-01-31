@@ -9,6 +9,12 @@ const sendEmailCommandParams = z.object({
     body: z.string(),
 });
 
+const sendMailParams = z.object({
+    toaddress: z.string().email(),
+    subject: z.string(),
+    body: z.string(),
+});
+
 const createSendEmailCommand = (
     emailParams: z.infer<typeof sendEmailCommandParams>
 ) => {
@@ -21,7 +27,7 @@ const createSendEmailCommand = (
             Body: {
                 Html: {
                     Charset: "UTF-8",
-                    Data: "<h1>OTP from Guidance Grid</h1>",
+                    Data: "<h1>Verify Email Address: Guidance Grid</h1>",
                 },
                 Text: {
                     Charset: "UTF-8",
@@ -38,17 +44,18 @@ const createSendEmailCommand = (
     return new SendEmailCommand(params);
 };
 
-const sendMail = async () => {
-    console.log("Sending email...");
+const sendMail = async ({
+    subject,
+    body,
+    toaddress,
+}: z.infer<typeof sendMailParams>) => {
     const emailOptions = {
-        toaddress: "guidancegrid@gmail.com",
+        toaddress,
         fromaddress: "guidancegrid@gmail.com",
-        body: "Hello from Guidance Grid. Your OTP is 923445",
-        subject: "OTP from Guidance Grid",
+        body,
+        subject,
     };
-    console.log("Creating Send Email Command");
     const sendEmailCommand = createSendEmailCommand(emailOptions);
-    console.log("inal");
     await sesClient.send(sendEmailCommand);
 };
 

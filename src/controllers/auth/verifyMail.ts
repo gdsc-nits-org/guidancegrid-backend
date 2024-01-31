@@ -14,7 +14,11 @@ export const verifyMail: Interfaces.Controllers.Async = async (
     try {
         const validatedEmail = verifyEmailBody.parse(req.body);
         const token = Utils.Auth.signUp.genMailToken(validatedEmail.email);
-        await Utils.Email.sendMail();
+        await Utils.Email.sendMail({
+            subject: "Verify Email Address: Guidance Grid",
+            body: `<a href="http://localhost:3000/verify-email/${token}">Verify Email</a>`,
+            toaddress: validatedEmail.email,
+        });
         return res.json(Utils.Response.success(token));
     } catch (error) {
         if (error instanceof z.ZodError) {
