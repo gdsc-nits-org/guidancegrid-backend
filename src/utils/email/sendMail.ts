@@ -41,7 +41,7 @@ const createSendEmailCommand = (
 const sendMail = async () => {
     console.log("Sending email...");
     const emailOptions = {
-        toaddress: "jaydeepjd.8914@gmail.com",
+        toaddress: "guidancegrid@gmail.com",
         fromaddress: "guidancegrid@gmail.com",
         body: "Hello from Guidance Grid. Your OTP is 923445",
         subject: "OTP from Guidance Grid",
