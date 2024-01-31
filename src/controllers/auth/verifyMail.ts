@@ -60,7 +60,8 @@ export const verifyMail: Interfaces.Controllers.Async = async (
                 <p>Someone wants to create an account on Guidance Grid using this email address (Hopefully it is you).</p>
                 <p>Click here to verify your mail.</p>
                 <p><a href="${verificationLink}">Verify Mail</a></p>
-                <p>Or paste this link directly in your browser: ${verificationLink}</p>
+                <p>Or paste this link directly in your browser:</p>
+                <p> ${verificationLink}</p>
                 <p>If you didn't request this, you can safely ignore this email.</p>
 
                 <p>Best regards,<br>Guidance Grid Team</p>
