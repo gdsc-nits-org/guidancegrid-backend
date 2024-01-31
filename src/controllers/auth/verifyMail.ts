@@ -14,6 +14,7 @@ export const verifyMail: Interfaces.Controllers.Async = async (
     try {
         const validatedEmail = verifyEmailBody.parse(req.body);
         const token = Utils.Auth.signUp.genMailToken(validatedEmail.email);
+        await Utils.Email.sendMail();
         return res.json(Utils.Response.success(token));
     } catch (error) {
         if (error instanceof z.ZodError) {

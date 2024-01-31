@@ -1,18 +1,21 @@
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 import { sesClient } from "./sesClient";
-// import env from "config";
+import { z } from "zod";
 
-interface SendEmailCommandParams {
-    toaddress: string;
-    fromaddress: string;
-    subject: string;
-    body: string;
-}
+const sendEmailCommandParams = z.object({
+    toaddress: z.string().email(),
+    fromaddress: z.string().email(),
+    subject: z.string(),
+    body: z.string(),
+});
 
-const createSendEmailCommand = (emailParams: SendEmailCommandParams) => {
+const createSendEmailCommand = (
+    emailParams: z.infer<typeof sendEmailCommandParams>
+) => {
+    const validatedEmailParams = sendEmailCommandParams.parse(emailParams);
     const params = {
         Destination: {
-            ToAddresses: [emailParams.toaddress],
+            ToAddresses: [validatedEmailParams.toaddress],
         },
         Message: {
             Body: {
@@ -22,32 +25,31 @@ const createSendEmailCommand = (emailParams: SendEmailCommandParams) => {
                 },
                 Text: {
                     Charset: "UTF-8",
-                    Data: emailParams.body,
+                    Data: validatedEmailParams.body,
                 },
             },
             Subject: {
                 Charset: "UTF-8",
-                Data: emailParams.subject,
+                Data: validatedEmailParams.subject,
             },
         },
-        Source: emailParams.fromaddress,
+        Source: validatedEmailParams.fromaddress,
     };
     return new SendEmailCommand(params);
 };
 
 const sendMail = async () => {
-    const emailOptions: SendEmailCommandParams = {
+    console.log("Sending email...");
+    const emailOptions = {
         toaddress: "jaydeepjd.8914@gmail.com",
         fromaddress: "guidancegrid@gmail.com",
         body: "Hello from Guidance Grid. Your OTP is 923445",
         subject: "OTP from Guidance Grid",
     };
+    console.log("Creating Send Email Command");
     const sendEmailCommand = createSendEmailCommand(emailOptions);
-    try {
-        return sesClient.send(sendEmailCommand);
-    } catch (e) {
-        console.log("Failed", e);
-    }
+    console.log("inal");
+    await sesClient.send(sendEmailCommand);
 };
 
 export { sendMail };

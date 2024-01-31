@@ -9,9 +9,9 @@ const envSchema = z.object({
     DATABASE_URL_DEV: z.string(),
     DATABASE_URL_PROD: z.string(),
     JWT_SIGNING_KEY: z.string(),
-    AWS_SES_ACCESS_KEY: z.string(),
-    AWS_SES_SECRET_ACCESS_KEY: z.string(),
-    AWS_SES_IAM_USER: z.string(),
+    AWS_ACCESS_KEY_ID: z.string(),
+    AWS_SECRET_ACCESS_KEY: z.string(),
+    AWS_IAM_USER: z.string(),
     AWS_SMTP_USERNAME: z.string(),
     AWS_SMTP_PASSWORD: z.string(),
 });
