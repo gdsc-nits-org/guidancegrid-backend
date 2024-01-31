@@ -181,3 +181,7 @@ It will ask for email. Enter it and accept all terms and conditions.
 
 ## ER Diagram
 ![image (1)](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/48a5be94-0d6e-4d02-af91-1cdd12d7604e)
+
+## Auth Flow
+![diagram-export-31-1-2024-12_59_54-pm](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/64089730/a53c5600-9173-4e77-96ea-0a4ef3634a23)
+
