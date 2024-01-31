@@ -29,6 +29,7 @@ export const createUser: Interfaces.Controllers.Async = async (
         });
         return res.json(Utils.Response.success(user));
     } catch (error) {
+        console.log(error);
         return next(
             Utils.Response.error("Error in createUser Controller", 500)
         );
