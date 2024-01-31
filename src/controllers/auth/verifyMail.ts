@@ -1,4 +1,3 @@
-import { genMailToken } from "src/utils/auth/signup/genMailToken";
 import { z } from "zod";
 import * as Interfaces from "../../interfaces";
 import * as Utils from "../../utils";
@@ -14,7 +13,7 @@ export const verifyMail: Interfaces.Controllers.Async = async (
 ) => {
     try {
         const validatedEmail = verifyEmailBody.parse(req.body);
-        const token = genMailToken(validatedEmail.email);
+        const token = Utils.Auth.signUp.genMailToken(validatedEmail.email);
         return res.json(Utils.Response.success(token));
     } catch (error) {
         if (error instanceof z.ZodError) {
