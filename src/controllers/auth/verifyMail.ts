@@ -1,0 +1,26 @@
+import { genMailToken } from "src/utils/auth/signup/genMailToken";
+import { z } from "zod";
+import * as Interfaces from "../../interfaces";
+import * as Utils from "../../utils";
+
+const verifyEmailBody = z.object({
+    email: z.string().email(),
+});
+
+export const verifyMail: Interfaces.Controllers.Async = async (
+    req,
+    res,
+    next
+) => {
+    try {
+        const validatedEmail = verifyEmailBody.parse(req.body);
+        const token = genMailToken(validatedEmail.email);
+        return res.json(Utils.Response.success(token));
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            const errorMsg = JSON.parse(error.message)[0].message;
+            return next(Utils.Response.error(errorMsg, 401));
+        }
+        return next(error);
+    }
+};

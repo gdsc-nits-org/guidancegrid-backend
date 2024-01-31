@@ -11,18 +11,19 @@ datasource db {
 }
 
 model User {
-  uid        Int          @id @default(autoincrement())
-  email      String       @unique
-  username   String       @unique
-  password   String
-  imgURL     String?
-  firstName  String
-  lastName   String
-  Social     Social[]
-  Post       Post[]
-  Comment    Comment[]
-  Vote       Vote[]
-  Connection Connection[]
+  uid             Int          @id @default(autoincrement())
+  email           String       @unique
+  username        String       @unique
+  password        String
+  imgURL          String?
+  firstName       String
+  lastName        String
+  jwtTokenVersion Int          @default(1)
+  Social          Social[]
+  Post            Post[]
+  Comment         Comment[]
+  Vote            Vote[]
+  Connection      Connection[]
 }
 
 model Social {

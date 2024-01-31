@@ -1,5 +1,5 @@
 interface CheckBody {
-  msg?: string;
+    msg?: string;
 }
 
 export { CheckBody };
