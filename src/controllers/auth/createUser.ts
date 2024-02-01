@@ -18,11 +18,14 @@ export const createUser: Interfaces.Controllers.Async = async (
 ) => {
     try {
         const validatedCreateUserBody = createUserBody.parse(req.body);
+        const hashedPassword = Utils.Auth.security.hashPassword(
+            validatedCreateUserBody.password
+        );
         const user = await prisma.user.create({
             data: {
                 email: validatedCreateUserBody.email,
                 username: validatedCreateUserBody.username,
-                password: validatedCreateUserBody.password,
+                password: hashedPassword,
                 firstName: validatedCreateUserBody.firstName,
                 lastName: validatedCreateUserBody.lastName,
             },

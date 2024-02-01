@@ -1,4 +1,4 @@
-import { generateJWTtoken } from "../generateJWTtoken";
+import { generateJWTtoken } from "../security/generateJWTtoken";
 import { z } from "zod";
 
 export const emailPayload = z.object({
