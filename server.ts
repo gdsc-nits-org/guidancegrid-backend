@@ -23,6 +23,12 @@ app.use(`${Constants.System.ROOT}/auth`, Routers.Auth);
 // Error Handlers
 app.use(Middlewares.Error.errorHandler);
 
-app.listen(Constants.System.PORT, () => {
+const server = app.listen(Constants.System.PORT, () => {
     console.log(`Server started on port ${Constants.System.PORT}`);
+});
+
+process.addListener("SIGINT", () => {
+    console.log("exiting.....");
+    server.close();
+    process.exit(0);
 });
