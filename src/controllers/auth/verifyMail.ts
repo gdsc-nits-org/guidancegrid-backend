@@ -1,11 +1,6 @@
-import { z } from "zod";
 import env from "config";
 import * as Interfaces from "../../interfaces";
 import * as Utils from "../../utils";
-
-const verifyEmailBody = z.object({
-    email: z.string().email(),
-});
 
 export const verifyMail: Interfaces.Controllers.Async = async (
     req,
@@ -13,8 +8,7 @@ export const verifyMail: Interfaces.Controllers.Async = async (
     next
 ) => {
     try {
-        const validatedEmail = verifyEmailBody.parse(req.body);
-        const token = Utils.Auth.signUp.genMailToken(validatedEmail.email);
+        const token = Utils.Auth.signUp.genMailToken(req.body.email);
         let verificationLink;
         if (env.NODE_ENV === "dev") {
             verificationLink = `http://localhost:3000/create-user?token=${token}`;
@@ -69,14 +63,10 @@ export const verifyMail: Interfaces.Controllers.Async = async (
             </body>
             </html>
             `,
-            toaddress: validatedEmail.email,
+            toaddress: req.body.email,
         });
-        return res.json(Utils.Response.success(token));
+        return res.json(Utils.Response.success("Mail Sent"));
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            const errorMsg = JSON.parse(error.message)[0].message;
-            return next(Utils.Response.error(errorMsg, 401));
-        }
         return next(error);
     }
 };
