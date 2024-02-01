@@ -11,7 +11,7 @@ export const decodeEmailfromJWT: Interfaces.Middlewares.Async = async (
         if (!token) {
             throw new Error("No token provided");
         }
-        const emailPayload = Utils.Auth.verifyJWT(token);
+        const emailPayload = Utils.Auth.security.verifyJWT(token);
         const validatedEmailPayload =
             Utils.Auth.signUp.emailPayload.parse(emailPayload);
         req.body.email = validatedEmailPayload.email;

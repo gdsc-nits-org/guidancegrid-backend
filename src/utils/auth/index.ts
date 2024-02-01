@@ -1,4 +1,4 @@
 import * as signUp from "./signup";
-import { verifyJWT } from "./verifyJWT";
+import * as security from "./security";
 
-export { signUp, verifyJWT };
+export { signUp, security };
