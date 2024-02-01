@@ -1,3 +1,4 @@
 import { decodeEmailfromJWT } from "./decodeEmailfromJWT";
+import { checkIsEmailUnique } from "./checkIsEmailUnique";
 
-export { decodeEmailfromJWT };
+export { decodeEmailfromJWT, checkIsEmailUnique };

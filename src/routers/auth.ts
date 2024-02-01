@@ -4,7 +4,12 @@ import * as Middlewares from "../middlewares";
 
 const router = express.Router();
 
-router.post("/verify-email", Controllers.Auth.verifyMail);
+router.post(
+    "/verify-email",
+    Middlewares.Auth.checkIsEmailUnique,
+    Controllers.Auth.verifyMail
+);
+
 router.post(
     "/create-user",
     Middlewares.Auth.decodeEmailfromJWT,
