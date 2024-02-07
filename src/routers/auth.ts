@@ -16,4 +16,6 @@ router.post(
     Controllers.Auth.createUser
 );
 
+router.post("/login", Controllers.Auth.login);
+
 export default router;
