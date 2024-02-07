@@ -185,3 +185,12 @@ It will ask for email. Enter it and accept all terms and conditions.
 ## Auth Flow
 ![diagram-export-31-1-2024-12_59_54-pm](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/64089730/a53c5600-9173-4e77-96ea-0a4ef3634a23)
 
+## Login Flow
+![loginFlow](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/ddb959dc-2064-4e02-bb9d-a2c0f0e96a2a)
+
+## Forgot Password Flow
+![forgotPasswordFlow](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/01de3643-e8e2-444f-ace6-a030d179e18d)
+
+## Sign Out of All Devices Flow
+![signOutAllDevFlow](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/82e04032-8010-490b-bbe5-6a8bce32a0c7)
+
