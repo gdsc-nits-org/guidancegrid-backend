@@ -19,7 +19,7 @@ export const login: Interfaces.Middlewares.Async = async (req, res, next) => {
         });
 
         if (!user) {
-            return res.json(Utils.Response.error("User not exist", 404));
+            return next(Utils.Response.error("User not exist", 404));
         }
 
         const salt = user.password.split("$")[1];
@@ -39,7 +39,7 @@ export const login: Interfaces.Middlewares.Async = async (req, res, next) => {
 
             return res.json(Utils.Response.success("Loggedin Successfully"));
         } else {
-            return res.json(Utils.Response.error("Invalid password", 401));
+            return next(Utils.Response.error("Invalid password", 401));
         }
     } catch (error) {
         if (error instanceof z.ZodError) {

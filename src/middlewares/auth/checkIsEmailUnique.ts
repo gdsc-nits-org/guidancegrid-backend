@@ -30,6 +30,6 @@ export const checkIsEmailUnique: Interfaces.Middlewares.Async = async (
             const errorMsg = JSON.parse(error.message)[0].message;
             return next(Utils.Response.error(errorMsg, 401));
         }
-        return res.json(Utils.Response.error("Error in Middleware", 500));
+        return next(Utils.Response.error("Error in Middleware", 500));
     }
 };

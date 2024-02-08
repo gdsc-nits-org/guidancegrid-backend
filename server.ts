@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 import * as Middlewares from "./src/middlewares";
 import * as Routers from "./src/routers";
@@ -14,7 +15,8 @@ app.use(cors())
     .use(helmet())
     .use(morgan("dev"))
     .use(express.json())
-    .use(express.urlencoded({ extended: true }));
+    .use(express.urlencoded({ extended: true }))
+    .use(cookieParser());
 
 // Routers
 app.use(`${Constants.System.ROOT}/`, Routers.Health);
