@@ -10,7 +10,7 @@ const verifyEmailBody = z.object({
 
 export const checkIsEmailUnique: Interfaces.Middlewares.Async = async (
     req,
-    res,
+    _res,
     next
 ) => {
     try {
