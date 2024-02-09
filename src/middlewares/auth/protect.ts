@@ -7,7 +7,7 @@ const userSchema = z.object({
     jwtTokenVersion: z.number(),
 });
 
-export const getUserFromCookies: Interfaces.Middlewares.Async = async (
+export const protect: Interfaces.Middlewares.Async = async (
     req,
     _res,
     next
@@ -29,6 +29,13 @@ export const getUserFromCookies: Interfaces.Middlewares.Async = async (
 
         if (!user) {
             return next(Utils.Response.error("User not found", 404));
+        }
+
+        const isValidVersion =
+            user.jwtTokenVersion === validatedUserPayload.jwtTokenVersion;
+
+        if (!isValidVersion) {
+            return next(Utils.Response.error("Invalid token version", 401));
         }
 
         req.body.username = validatedUserPayload.username;

@@ -20,7 +20,7 @@ router.post("/login", Controllers.Auth.login);
 
 router.post(
     "/logout-all",
-    Middlewares.Auth.getUserFromCookies,
+    Middlewares.Auth.protect,
     Controllers.Auth.logoutAll
 );
 

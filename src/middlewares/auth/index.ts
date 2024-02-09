@@ -1,5 +1,5 @@
 import { decodeEmailfromJWT } from "./decodeEmailfromJWT";
 import { checkIsEmailUnique } from "./checkIsEmailUnique";
-import { getUserFromCookies } from "./getUserFromCookies";
+import { protect } from "./protect";
 
-export { decodeEmailfromJWT, checkIsEmailUnique, getUserFromCookies };
+export { decodeEmailfromJWT, checkIsEmailUnique, protect };
