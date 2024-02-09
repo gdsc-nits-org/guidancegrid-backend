@@ -11,7 +11,12 @@ import * as Constants from "./src/globals/constants";
 const app = express();
 
 // Middlewares
-app.use(cors())
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://guidance-grid.vercel.app/"],
+        credentials: true,
+    })
+)
     .use(helmet())
     .use(morgan("dev"))
     .use(express.json())
