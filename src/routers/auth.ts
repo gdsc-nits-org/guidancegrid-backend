@@ -20,4 +20,6 @@ router.post("/login", Controllers.Auth.login);
 
 router.get("/logout-all", Middlewares.Auth.protect, Controllers.Auth.logoutAll);
 
+router.get("/logout", Middlewares.Auth.protect, Controllers.Auth.logout);
+
 export default router;
