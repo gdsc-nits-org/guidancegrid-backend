@@ -18,7 +18,7 @@ app.use(
             "https://guidance-grid.vercel.app/",
             "https://guidancegrid.gdscnits.in/",
         ],
-        credentials: true,
+        // credentials: true,
     })
 )
     .use(helmet())
