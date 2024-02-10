@@ -13,7 +13,11 @@ const app = express();
 // Middlewares
 app.use(
     cors({
-        origin: ["http://localhost:3000", "https://guidance-grid.vercel.app/"],
+        origin: [
+            "http://localhost:3000",
+            "https://guidance-grid.vercel.app/",
+            "https://guidancegrid.gdscnits.in/",
+        ],
         credentials: true,
     })
 )
