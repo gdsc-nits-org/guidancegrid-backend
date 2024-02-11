@@ -29,6 +29,7 @@ app.use(cors(corsOptions))
 // Routers
 app.use(`${Constants.System.ROOT}/`, Routers.Health);
 app.use(`${Constants.System.ROOT}/auth`, Routers.Auth);
+app.use(`${Constants.System.ROOT}/post`, Routers.Post);
 app.use(`${Constants.System.ROOT}/profile`, Routers.Profile);
 
 // Error Handlers
