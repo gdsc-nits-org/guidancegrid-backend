@@ -1,5 +1,5 @@
 import { decodeEmailfromJWT } from "./decodeEmailfromJWT";
-import { checkIsEmailUnique } from "./checkIsEmailUnique";
+import { checkIfEmailExists } from "./checkIfEmailExists";
 import { protect } from "./protect";
 
-export { decodeEmailfromJWT, checkIsEmailUnique, protect };
+export { decodeEmailfromJWT, checkIfEmailExists, protect };

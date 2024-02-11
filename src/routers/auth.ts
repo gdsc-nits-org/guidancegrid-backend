@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post(
     "/verify-email",
-    Middlewares.Auth.checkIsEmailUnique,
+    Middlewares.Auth.checkIfEmailExists,
     Controllers.Auth.verifyMail
 );
 
