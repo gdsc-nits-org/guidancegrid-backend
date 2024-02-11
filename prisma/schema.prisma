@@ -38,6 +38,8 @@ model Social {
 
 model Post {
   postID    Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
   title     String
   body      String
   authorID  Int
