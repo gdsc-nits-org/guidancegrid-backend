@@ -9,7 +9,7 @@ export const decodeEmailfromJWT: Interfaces.Middlewares.Async = async (
     try {
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
-            throw new Error("No token provided");
+            throw new Error("JWT Token not found");
         }
         const emailPayload = Utils.Auth.security.verifyJWT(token);
         const validatedEmailPayload =
@@ -17,9 +17,6 @@ export const decodeEmailfromJWT: Interfaces.Middlewares.Async = async (
         req.body.email = validatedEmailPayload.email;
         return next();
     } catch (error) {
-        console.log(error);
-        return res.json(
-            Utils.Response.error("Error in decodeEmailfromJWT Middleware", 401)
-        );
+        return res.json(Utils.Response.error("An Error Occured", 401));
     }
 };

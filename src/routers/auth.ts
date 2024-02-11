@@ -28,4 +28,16 @@ router.get("/logout-all", Middlewares.Auth.protect, Controllers.Auth.logoutAll);
 
 router.get("/logout", Middlewares.Auth.protect, Controllers.Auth.logout);
 
+router.post(
+    "/send-mail-forgot-password",
+    Middlewares.Auth.checkIfEmailExists,
+    Controllers.Auth.sendMailforgotPassword
+);
+
+router.post(
+    "reset-password",
+    Middlewares.Auth.decodeEmailfromJWT,
+    Controllers.Auth.resetPassword
+);
+
 export default router;
