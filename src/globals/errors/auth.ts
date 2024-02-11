@@ -1,10 +1,10 @@
 import * as Utils from "../../utils";
 
-const emailAlreadyExists = Utils.Response.error("Email Already Exists", 401);
+const emailAlreadyExists = Utils.Response.error("Email Already Exists", 409);
 
 const usernameAlreadyExists = Utils.Response.error(
     "Username Already Exists",
-    401
+    409
 );
 
 export { emailAlreadyExists, usernameAlreadyExists };

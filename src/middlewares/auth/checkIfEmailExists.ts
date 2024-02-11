@@ -28,7 +28,7 @@ export const checkIfEmailExists: Interfaces.Middlewares.Async = async (
         console.log(error);
         if (error instanceof z.ZodError) {
             const errorMsg = JSON.parse(error.message)[0].message;
-            return next(Utils.Response.error(errorMsg, 401));
+            return next(Utils.Response.error(errorMsg, 400));
         }
         return next(Utils.Response.error("Error in Middleware", 500));
     }

@@ -1,0 +1,291 @@
+openapi: 3.0.0
+info:
+  title: Guidancegrid API
+  version: 1.0.0
+  description: The API for Guidancegrid
+  
+components:
+
+  schemas:
+    User:
+      type: object
+      properties:
+        uid:
+          type: integer
+          example: 1
+        
+        email:
+          type: string
+          example: "user@example.com"
+          
+        username:
+          type: string
+          example: "user123"
+          
+        password:
+          type: string
+          example: "password123"
+          
+        imgURL:
+          type: string
+          example: "https://example.com/user.jpg"
+          
+        firstName:
+          type: string
+          example: "John"
+          
+        lastName:
+          type: string
+          example: "Doe"
+          
+        jwtTokenVersion:
+          type: integer
+          example: 1
+          
+        Social:
+          type: array
+          items:
+            $ref: '#/definitions/Social'
+          example:
+            - githubURL: "https://github.com/user123"
+            - facebookURL: "https://facebook.com/user123"
+            
+        Post:
+          type: array
+          items:
+            $ref: '#/definitions/Post'
+          example:
+            - title: "First Post"
+              body: "This is the content of my first post."
+            - title: "Second Post"
+              body: "This is the content of my second post."
+              
+        Comment:
+          type: array
+          items:
+            $ref: '#/definitions/Comment'
+          example:
+            - postID: 1
+              authorID: 2
+              parentCommentID: null
+              text: "Great post!"
+              
+        Vote:
+          type: array
+          items:
+            $ref: '#/definitions/Vote'
+          example:
+            - postID: 1
+            - postID: 2
+            
+        Connection:
+          type: array
+          items:
+            $ref: '#/definitions/Connection'
+          example:
+            - fromUID: 1
+              toUID: 2
+              
+    Social:
+      type: object
+      properties:
+        uid:
+          type: integer
+          example: 1
+          
+        githubURL:
+          type: string
+          example: "https://github.com/user123"
+          
+        facebookURL:
+          type: string
+          example: "https://facebook.com/user123"
+          
+        linkedinURL:
+          type: string
+          example: "https://linkedin.com/user123"
+          
+        portfolioURL:
+          type: string
+          example: "https://portfolio.com/user123"
+          
+        instaURL:
+          type: string
+          example: "https://instagram.com/user123"
+          
+    Post:
+      type: object
+      properties:
+        postID:
+          type: integer
+          example: 1
+          
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-02-11T12:00:00Z"
+          
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-02-11T12:00:00Z"
+          
+        title:
+          type: string
+          example: "First Post"
+          
+        body:
+          type: string
+          example: "This is the content of my first post."
+          
+        authorID:
+          type: integer
+          example: 1
+          
+        tags:
+          type: array
+          items:
+            type: string
+          example:
+            - "technology"
+            - "coding"
+            
+        voteCount:
+          type: integer
+          example: 10
+          
+        Comment:
+          type: array
+          items:
+            $ref: '#/definitions/Comment'
+            
+        Vote:
+          type: array
+          items:
+            $ref: '#/definitions/Vote'
+            
+    Comment:
+      type: object
+      properties:
+        commentID:
+          type: integer
+          example: 1
+          
+        postID:
+          type: integer
+          example: 1
+          
+        authorID:
+          type: integer
+          example: 2
+          
+        parentCommentID:
+          type: integer
+          example: null
+          
+        text:
+          type: string
+          example: "Great post!"
+          
+    Vote:
+      type: object
+      properties:
+        uid:
+          type: integer
+          example: 1
+          
+        postID:
+          type: integer
+          example: 1
+          
+    Connection:
+      type: object
+      properties:
+        fromUID:
+          type: integer
+          example: 1
+          
+        toUID:
+          type: integer
+          example: 2
+
+
+servers:
+  - url: http://localhost:4000/api/v1
+    description: Local Server
+  - url: https://api.guidancegrid.gdscnits.in/api/v1
+    description: AWS Server (EC2)
+
+paths:
+  /auth/verify-email:
+    post:
+      description: Verify email
+      tags:
+        - Auth
+      requestBody:
+        description: A JSON object containing email
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "prybrt06@gmail.com"
+              required:
+                - email
+
+      responses:
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  msg:
+                    type: string
+                    example: Mail Sent
+        409:
+          description: Email already exists 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 409
+                  msg:
+                    type: string
+                    example: Email Already Exists
+        400:
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 400
+                  msg:
+                    type: string
+                    example: invalid input
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  msg:
+                    type: string
+                    example: Internal Server Error
+                    

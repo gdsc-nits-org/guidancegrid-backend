@@ -4,6 +4,9 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
+import swaggerUI from "swagger-ui-express";
+import YAML from "yamljs";
+
 import * as Middlewares from "./src/middlewares";
 import * as Routers from "./src/routers";
 import * as Constants from "./src/globals/constants";
@@ -25,6 +28,17 @@ app.use(cors(corsOptions))
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
     .use(cookieParser());
+
+const swaggerDocument = YAML.load(Constants.System.DOCS);
+
+app.use(
+    `${Constants.System.ROOT}/docs`,
+    swaggerUI.serve,
+    swaggerUI.setup(swaggerDocument, {
+        customCss: ".swagger-ui .topbar { display: none }",
+        customSiteTitle: "Guidance Grid API Docs",
+    })
+);
 
 // Routers
 app.use(`${Constants.System.ROOT}/`, Routers.Health);
