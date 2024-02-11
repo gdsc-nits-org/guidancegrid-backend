@@ -11,7 +11,11 @@ import * as Constants from "./src/globals/constants";
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:3000", /.*\.gdscnits.in/],
+    origin: [
+        "http://localhost:3000",
+        "https://guidancegrid.gdscnits.in",
+        "https://guidance-grid.vercel.app",
+    ],
     credentials: true,
 };
 // Middlewares
