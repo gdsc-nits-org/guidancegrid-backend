@@ -35,7 +35,7 @@ router.post(
 );
 
 router.post(
-    "reset-password",
+    "/reset-password",
     Middlewares.Auth.decodeEmailfromJWT,
     Controllers.Auth.resetPassword
 );
