@@ -12,9 +12,9 @@ export const sendMailforgotPassword: Interfaces.Controllers.Async = async (
     const token = Utils.Auth.security.generateJWTtoken(email, JwtExpiresIn);
     let resetLink;
     if (env.NODE_ENV === "dev") {
-        resetLink = `http://localhost:3000/create-user?token=${token}`;
+        resetLink = `http://localhost:3000/reset-password?token=${token}`;
     } else if (env.NODE_ENV === "prod") {
-        resetLink = `${env.GUIDANCE_GRID_CLIENT_URI}/create-user?token=${token}`;
+        resetLink = `${env.GUIDANCE_GRID_CLIENT_URI}/reset-password?token=${token}`;
     }
     try {
         await Utils.Email.sendMail({
@@ -31,6 +31,7 @@ export const sendMailforgotPassword: Interfaces.Controllers.Async = async (
               </p>
               <ol>
                 <li>Click on the Password Reset Link: <a href="${resetLink}">${resetLink}</a></li>
+                <li>Click on the(Production) Password Reset Link: <a href="https://${env.GUIDANCE_GRID_CLIENT_URI}/reset-password?token=${token}">Click Here</a></li>
                 <li>Verify Your Identity: You may be required to provide additional information to verify your identity. This step is crucial to ensuring the security of your account.</li>
                 <li>Set a New Password: Once your identity is confirmed, you will be prompted to set a new password for your account. Please choose a strong and secure password.</li>
               </ol>
