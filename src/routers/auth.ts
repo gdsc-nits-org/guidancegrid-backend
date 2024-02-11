@@ -16,6 +16,12 @@ router.post(
     Controllers.Auth.createUser
 );
 
+router.get(
+    "/is-loggedin",
+    Middlewares.Auth.protect,
+    Controllers.Auth.isLoggedIn
+);
+
 router.post("/login", Controllers.Auth.login);
 
 router.get("/logout-all", Middlewares.Auth.protect, Controllers.Auth.logoutAll);
