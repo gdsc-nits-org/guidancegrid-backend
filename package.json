@@ -15,6 +15,7 @@
         "pretty": "pnpm prettier --write .",
         "precommit": "lint-staged",
         "prepare": "npx simple-git-hooks",
+        "postinstall" : "pnpm prisma generate",
         "db:update": "prisma migrate dev"
     },
     "devDependencies": {
