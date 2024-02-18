@@ -19,7 +19,8 @@ model User {
   firstName       String
   lastName        String
   jwtTokenVersion Int          @default(1)
-  Social          Social[]
+  bio             String?
+  Social          Social?
   Post            Post[]
   Comment         Comment[]
   Vote            Vote[]

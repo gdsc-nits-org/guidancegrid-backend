@@ -4,6 +4,8 @@ import * as Middlewares from "../middlewares";
 
 const router = express.Router();
 
-router.get("/get", Middlewares.Auth.protect, Controllers.Profile.getProfile);
+router
+    .get("/", Middlewares.Auth.protect, Controllers.Profile.getProfile)
+    .patch("/", Middlewares.Auth.protect, Controllers.Profile.updateProfile);
 
 export default router;
