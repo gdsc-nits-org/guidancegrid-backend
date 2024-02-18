@@ -1,3 +1,4 @@
 import { getProfile } from "./getProfile";
+import { updateProfile } from "./updateProfile";
 
-export { getProfile };
+export { getProfile, updateProfile };
