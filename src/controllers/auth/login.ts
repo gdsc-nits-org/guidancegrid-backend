@@ -41,6 +41,12 @@ export const login: Interfaces.Middlewares.Async = async (req, res, next) => {
                 sameSite: "none",
                 maxAge: 30 * 24 * 60 * 60 * 1000,
             });
+            res.cookie("username", user.username, {
+                httpOnly: false,
+                secure: true,
+                sameSite: "none",
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+            });
 
             return res.json(Utils.Response.success("Loggedin Successfully"));
         } else {
