@@ -3,7 +3,7 @@ name: Deploy-EC2
 on:
     push:
         branches:
-            - main
+            - dev
 
 jobs:
     deploy:
@@ -15,7 +15,7 @@ jobs:
             - name: Rsync deployments
               uses: burnett01/rsync-deployments@6.0.0
               with:
-                  switches: --avzr --delete
+                  switches: -avzr --delete
                   path: ./*
                   remote_path: /home/ubuntu/guidancegrid-backend
                   remote_host: ${{ secrets.AWS_EC2_HOST }}
