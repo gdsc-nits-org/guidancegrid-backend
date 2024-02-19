@@ -1,0 +1,17 @@
+name: Deploy-EC2
+
+on: [push]
+
+jobs:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: rsync deployments
+          uses: burnett01/rsync-deployments@6.0.0
+          with:
+              switches: --avzr --delete
+              path: ./*
+              remote_path: /home/ubuntu/guidancegrid-backend
+              remote_host: ec2-52-66-188-229.ap-south-1.compute.amazonaws.com
+              remote_user: ubuntu
+              remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
