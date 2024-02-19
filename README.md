@@ -1,3 +1,5 @@
+[![Deploy-EC2](https://github.com/gdsc-nits-org/guidancegrid-backend/actions/workflows/deploy.yml/badge.svg?branch=dev)](https://github.com/gdsc-nits-org/guidancegrid-backend/actions/workflows/deploy.yml)
+
 # PENP-T
 PostgreSQL + Express + Node + Prisma + TypeScript API Template
 
@@ -193,4 +195,3 @@ It will ask for email. Enter it and accept all terms and conditions.
 
 ## Sign Out of All Devices Flow
 ![signOutAllDevFlow](https://github.com/gdsc-nits-org/guidancegrid-backend/assets/97836029/82e04032-8010-490b-bbe5-6a8bce32a0c7)
-
