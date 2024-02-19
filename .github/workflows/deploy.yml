@@ -2,22 +2,21 @@ name: Deploy-EC2
 
 on:
     push:
-        branches:
-            - dev
+        branches: [dev]
 
 jobs:
-    deploy:
+    Deploy:
+        name: Deploy to EC2
         runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
 
-            - name: Rsync deployments
-              uses: burnett01/rsync-deployments@6.0.0
-              with:
-                  switches: -avzr --delete
-                  path: ./*
-                  remote_path: /home/ubuntu/guidancegrid-backend
-                  remote_host: ${{ secrets.AWS_EC2_HOST }}
-                  remote_user: ubuntu
-                  remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: Deploy
+              env:
+                  PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  HOSTNAME: ${{ secrets.SSH_HOST }}
+                  USER_NAME: ${{ secrets.USER_NAME }}
+
+              run: |
+                  echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+                  ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 'cd /home/ubuntu/guidancegrid-backend && ./script.sh'
