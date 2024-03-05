@@ -10,6 +10,12 @@ router.get(
     Controllers.Post.getAllPost
 );
 
+router.get(
+    "/get-single-post/:id",
+    Middlewares.Auth.protect,
+    Controllers.Post.getPostById
+);
+
 router.post(
     "/create-post",
     Middlewares.Auth.protect,

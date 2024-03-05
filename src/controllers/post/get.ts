@@ -5,6 +5,8 @@ import { z } from "zod";
 
 const pageQuery = z.number();
 
+const postIdQuery = z.number();
+
 export const getAllPost: Interfaces.Controllers.Async = async (
     req,
     res,
@@ -38,5 +40,28 @@ export const getAllPost: Interfaces.Controllers.Async = async (
         }
         console.log(error);
         return next(Utils.Response.error("Error in fetching posts", 500));
+    }
+};
+
+export const getPostById: Interfaces.Controllers.Async = async (
+    req,
+    res,
+    next
+) => {
+    try {
+        const postId = parseInt(req.params.id);
+        const validatePostId = postIdQuery.parse(postId);
+        const post = await Utils.prisma.post.findUnique({
+            where: {
+                postID: validatePostId,
+            },
+        });
+        if (!post) {
+            return next(Utils.Response.error("Post not found", 404));
+        }
+        return res.json(Utils.Response.success(post));
+    } catch (error) {
+        console.log(error);
+        return next(Utils.Response.error("Error in fetching post", 500));
     }
 };

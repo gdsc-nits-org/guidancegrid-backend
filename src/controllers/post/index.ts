@@ -1,4 +1,4 @@
-import { getAllPost } from "./get";
+import { getAllPost, getPostById } from "./get";
 import { createPost } from "./create";
 
-export { getAllPost, createPost };
+export { getAllPost, getPostById, createPost };
