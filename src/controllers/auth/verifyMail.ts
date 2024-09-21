@@ -54,12 +54,12 @@ export const verifyMail: Interfaces.Controllers.Async = async (
                 <p>Someone wants to create an account on Guidance Grid using this email address (Hopefully it is you).</p>
                 <p>Click here to verify your mail.</p>
                 <p><a href="${verificationLink}">Verify Mail</a></p>
-                <li>Click on the(Production) Link: <a href="https://${env.GUIDANCE_GRID_CLIENT_URI}/create-user?token=${token}">Verify Mail(Production)</a></li>
+                <li>Click on the Link: <a href="https://${env.GUIDANCE_GRID_CLIENT_URI}/create-user?token=${token}">Verify Mail(Production)</a></li>
                 <p>Or paste this link directly in your browser:</p>
                 <p> ${verificationLink}</p>
                 <p>If you didn't request this, you can safely ignore this email.</p>
               <p>
-                Thank you for using Guidance Grid. If you have any questions or need further assistance, feel free to contact our support team at Jaydeep Das<jdeepd.dev@gmail.com>, Jugya K Gogoi <crjugya123@gmail.com>, Priyabrat Duarah<prybrt06@gmail.com>.
+                Thank you for using Guidance Grid. If you have any questions or need further assistance, feel free to contact our support team at Jaydeep Das<jdeepd.dev@gmail.com>.
               </p>
                 <p>Best regards,<br>Guidance Grid Team</p>
               </div>

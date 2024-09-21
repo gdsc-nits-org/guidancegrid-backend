@@ -42,7 +42,7 @@ export const sendMailforgotPassword: Interfaces.Controllers.Async = async (
                 This link will expire in 30 minutes, so please make sure to complete the process promptly.
               </p>
               <p>
-                Thank you for using Guidance Grid. If you have any questions or need further assistance, feel free to contact our support team at Jaydeep Das<jdeepd.dev@gmail.com>, Jugya K Gogoi <crjugya123@gmail.com>, Priyabrat Duarah<prybrt06@gmail.com>.
+                Thank you for using Guidance Grid. If you have any questions or need further assistance, feel free to contact our support team at Jaydeep Das<jdeepd.dev@gmail.com>.
               </p>
               <p>Best regards,<br/>Guidance Grid Team</p>
             </body>

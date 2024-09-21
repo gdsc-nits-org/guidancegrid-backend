@@ -15,6 +15,7 @@ const envSchema = z.object({
     AWS_IAM_USER: z.string(),
     AWS_SMTP_USERNAME: z.string(),
     AWS_SMTP_PASSWORD: z.string(),
+    FROM_EMAIL: z.string(),
 });
 
 export default envSchema;

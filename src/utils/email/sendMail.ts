@@ -1,6 +1,7 @@
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 import { sesClient } from "./sesClient";
 import { z } from "zod";
+import env from "config";
 
 const sendEmailCommandParams = z.object({
     toaddress: z.string().email(),
@@ -47,7 +48,7 @@ const sendMail = async ({
 }: z.infer<typeof sendMailParams>) => {
     const emailOptions = {
         toaddress,
-        fromaddress: "guidancegrid@gmail.com",
+        fromaddress: env.FROM_EMAIL,
         body,
         subject,
     };
