@@ -30,7 +30,6 @@ router.get("/logout", Middlewares.Auth.protect, Controllers.Auth.logout);
 
 router.post(
     "/send-mail-forgot-password",
-    Middlewares.Auth.checkIfEmailExists,
     Controllers.Auth.sendMailforgotPassword
 );
 

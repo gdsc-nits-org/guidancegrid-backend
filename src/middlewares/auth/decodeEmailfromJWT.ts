@@ -12,11 +12,13 @@ export const decodeEmailfromJWT: Interfaces.Middlewares.Async = async (
             throw new Error("JWT Token not found");
         }
         const emailPayload = Utils.Auth.security.verifyJWT(token);
+        console.log("data ", emailPayload);
         const validatedEmailPayload =
             Utils.Auth.signUp.emailPayload.parse(emailPayload);
         req.body.email = validatedEmailPayload.email;
         return next();
     } catch (error) {
-        return res.json(Utils.Response.error("An Error Occured", 401));
+        console.log(error);
+        return res.json(Utils.Response.error(`${error}`, 401));
     }
 };

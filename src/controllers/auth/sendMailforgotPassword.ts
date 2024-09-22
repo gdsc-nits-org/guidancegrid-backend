@@ -1,6 +1,7 @@
 import env from "config";
 import * as Interfaces from "../../interfaces";
 import * as Utils from "../../utils";
+import { prisma } from "../../utils";
 
 export const sendMailforgotPassword: Interfaces.Controllers.Async = async (
     req,
@@ -8,6 +9,16 @@ export const sendMailforgotPassword: Interfaces.Controllers.Async = async (
     next
 ) => {
     const { email } = req.body;
+    const user = await prisma.user.findUnique({
+        where: {
+            email,
+        },
+    });
+    if (!user) {
+        return next(
+            Utils.Response.error("Email ID does not exist in Database")
+        );
+    }
     const JwtExpiresIn = 60 * 60 * 0.5; // 30 minutes
     const token = Utils.Auth.security.generateJWTtoken(email, JwtExpiresIn);
     let resetLink;

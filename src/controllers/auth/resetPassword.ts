@@ -18,6 +18,7 @@ export const resetPassword: Interfaces.Controllers.Async = async (
         const hashedPassword = Utils.Auth.security.hashPassword(
             validatedResetPasswordBody.password
         );
+        console.log("New pass", validatedResetPasswordBody.password);
         const user = await prisma.user.update({
             data: {
                 password: hashedPassword,
