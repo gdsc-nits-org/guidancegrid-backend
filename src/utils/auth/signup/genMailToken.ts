@@ -2,7 +2,12 @@ import { generateJWTtoken } from "../security/generateJWTtoken";
 import { z } from "zod";
 
 export const emailPayload = z.object({
-    email: z.string().email(),
+    payload: z
+        .object({
+            email: z.string().email(),
+        })
+        .optional(),
+    email: z.string().email().optional(),
 });
 
 export const genMailToken = (email: string) => {
